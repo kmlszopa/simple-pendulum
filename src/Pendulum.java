@@ -10,6 +10,7 @@ public class Pendulum extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	private double angle = Math.PI / 2;
 	private int length;
+	private JFrame frame;
 
 	public Pendulum(int length, double angle) {
 		this.length = length;
@@ -50,12 +51,22 @@ public class Pendulum extends JPanel implements Runnable {
 	}
 
 	public void showPendulum(double titl, int length) {
-		JFrame f = new JFrame("Pendulum Example");
+		this.frame = new JFrame("Pendulum Example");
 		Pendulum p = new Pendulum(length, titl);
-		f.add(p);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.pack();
-		f.setVisible(true);
+		this.frame.add(p);
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setLocationRelativeTo(null);
+		this.frame.pack();
+		this.frame.setVisible(true);
 		new Thread(p).start();
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
 }
